@@ -1,6 +1,4 @@
 import { faker } from '@faker-js/faker';
-const randomTitle = faker.lorem.word();
-const randomDescription = faker.lorem.words({ min: 1, max: 10 });
 
 describe('Issue create', () => {
   beforeEach(() => {
