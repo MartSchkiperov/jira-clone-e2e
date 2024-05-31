@@ -24,11 +24,8 @@ describe('Issue delete', () => {
   });
 
 
-  it.only("Should cancel deletion process successfully and validate", () => {
-    let firstTitle = cy.get('[placeholder="Short summary"]');
-    //console.log(title);
-
-    // Click the Delete Issue button
+  it("Should cancel deletion process successfully and validate", () => {
+    // Click the Delete Issue button.
     cy.get('[data-testid="icon:trash"]').click();
 
     // Cancel the deletion in the confirmation pop-up.
@@ -39,32 +36,18 @@ describe('Issue delete', () => {
     // Assert that the deletion confirmation dialogue is not visible.
     cy.get('[data-testid="modal:confirm"]').should("not.exist");
 
-    // Assert that the issue is not deleted and is still displayed on the Jira board.
     cy.get('[data-testid="modal:issue-details"]').should("be.visible")
-    /*
-    .within(() => {
-      cy.get('[placeholder="Short summary"]').should(title);
-    });
-    */
 
-    // Close the issue detail modal
     cy.get('[data-testid="icon:close"]').first().should("be.visible").click();
 
     // Assert that the issue is still displayed on the Jira board
-    //cy.get('[data-testid="board-list:backlog"]').should("be.visible");
     cy.get('[data-testid="board-list:backlog"]')
       .should('be.visible')
-      /*
       .within(() => {
-        // Assert that this list contains 5 issues
         cy.get('[data-testid="list-issue"]')
           .first()
           .find('p')
-          .contains(firstTitle)
+          .contains('This is an issue of type: Task.')
       });
-      */
-
-    cy.get('[data-testid="list-issue"]').first().should("be.visible");
   });
-
 });
