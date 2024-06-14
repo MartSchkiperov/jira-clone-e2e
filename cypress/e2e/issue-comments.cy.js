@@ -28,32 +28,15 @@ describe('Issue comments creating, editing and deleting', () => {
 
         // Edit the comment
         getIssueDetailsModal().within(() => {
-            cy.get(issueComment)
-                .first()
-                .contains('Edit')
-                .click()
-                .should('not.exist');
-            cy.get('textarea[placeholder="Add a comment..."]')
-                .clear()
-                .type(editedComment);
+            cy.get(issueComment).first().contains('Edit').click().should('not.exist');
+            cy.get('textarea[placeholder="Add a comment..."]').clear().type(editedComment);
             cy.contains('button', 'Save').click().should('not.exist');
-            cy.get(issueComment)
-                .should('contain', 'Edit')
-                .and('contain', editedComment);
+            cy.get(issueComment).should('contain', 'Edit').and('contain', editedComment);
         });
 
         // Remove the comment
-        getIssueDetailsModal()
-            .find(issueComment)
-            .contains('Delete')
-            .click();
-
-        cy.get('[data-testid="modal:confirm"]')
-            .contains('button', 'Delete comment')
-            .click()
-            .should('not.exist');
-
-        cy.get(issueComment)
-            .should('contain', 'An old silent pond...');
+        getIssueDetailsModal().find(issueComment).contains('Delete').click();
+        cy.get('[data-testid="modal:confirm"]').contains('button', 'Delete comment').click().should('not.exist');
+        cy.get(issueComment).should('contain', 'An old silent pond...');
     });
 });
