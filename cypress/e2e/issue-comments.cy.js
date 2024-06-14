@@ -13,7 +13,7 @@ describe('Issue comments creating, editing and deleting', () => {
 
     // Sprint 2 ASSIGNMENT 1: MODIFY TESTS FOR COVERING COMMENTS FUNCTIONALITY: ADD/UPDATE/DELETE
     // refactored 3 operations into one method
-    it.only('Should create, edit and remove a comment successfully', () => {
+    it('Should create, edit and remove a comment successfully', () => {
         const comment = 'TEST_COMMENT';
         const editedComment = 'TEST_COMMENT_EDITED';
 
